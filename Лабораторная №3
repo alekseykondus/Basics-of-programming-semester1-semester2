@@ -1,5 +1,5 @@
 #include <iostream>
-const int order = 100;
+#define order 100
 
 struct MatrixElement
 {
