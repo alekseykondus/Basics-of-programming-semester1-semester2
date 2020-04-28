@@ -396,7 +396,7 @@ int main()
 			<< "1 - Add a new word" << endl 
 			<< "2 - Learn word translation" << endl
 			<< "3 - Build a tree in the alphabetical order" <<  endl
-			<< "4 - Build a tree in accordance with the counter of references to word" << endl
+			<< "4 - Build a tree in accordance with the counter of references to a word" << endl
 			<< "________________________________________________________" << endl;
 		char s[100];
 		cin.getline(s, 100, '\n');
