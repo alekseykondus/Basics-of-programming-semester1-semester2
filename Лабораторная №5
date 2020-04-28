@@ -392,11 +392,11 @@ int main()
 	bool b = 1;
 	while (b)
 	{
-		cout << "What do you want to do?" << endl
-			<< "1 - Add new word" << endl 
-			<< "2 - Learn word translation" << endl //нужно сделать через дерево
+		cout << "What would you like to do?" << endl
+			<< "1 - Add a new word" << endl 
+			<< "2 - Learn word translation" << endl
 			<< "3 - Build a tree in the alphabetical order" <<  endl
-			<< "4 - Построить дерево согласно счетчику обращений к слову" << endl
+			<< "4 - Build a tree in accordance with the counter of references to word" << endl
 			<< "________________________________________________________" << endl;
 		char s[100];
 		cin.getline(s, 100, '\n');
