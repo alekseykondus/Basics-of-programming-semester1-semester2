@@ -46,9 +46,9 @@ struct MyStack_List
 
 int main()
 {
-	MyStack_List* top = nullptr;
-	MyStack_List* top_2 = nullptr;
-	MyStack_List* top_3 = nullptr;
+	MyStack_List* top = new MyStack_List;
+	MyStack_List* top_2 = new MyStack_List;
+	MyStack_List* top_3 = new MyStack_List;
 	top->push(1);
 	top->push(4);
 	top->push(6);
@@ -60,7 +60,7 @@ int main()
 	top->push(7);
 	top->push(0);
 	top->peek();
-
+	std :: cout << std :: endl;
 	for (int i = 0; i < 10; i++)
 	{
 		int pop_copy = top->pop();
@@ -69,5 +69,6 @@ int main()
 	}
 
 	top_2->peek();
+	std :: cout <<std :: endl;
 	top_3->peek();
 }
