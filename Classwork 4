@@ -1,0 +1,84 @@
+#include <iostream>
+
+using namespace std;
+
+struct steck 
+{
+private:
+	int max_size = 10;
+	int top = -1;
+	int* arr = new int[max_size];
+	int* arr2 = nullptr;
+
+	void newArr() 
+	{
+		max_size *= 2;
+		arr2 = new int[max_size];
+		for (int i = 0; i < max_size / 2; i++)
+			arr2[i] = arr[i];
+
+		delete(arr);
+		*arr = *arr2;
+	}
+public:
+	void push(int element) 
+	{
+		if (top == max_size)
+			newArr();
+
+		arr[++top] = element;
+	}
+	int peek() 
+	{
+		return arr[top];
+	}
+	int pop() 
+	{
+		return arr[top--];
+	}
+	bool empty() 
+	{
+		return top == -1;
+	}
+	void print() 
+	{
+		for (int i = 0; i <= top; i++)
+			cout << arr[i] << '	';
+		cout << endl;
+	};
+};
+
+int main() 
+{
+	steck steck_1, steck_2, steck_3;
+
+	steck_1.push(1);
+	steck_1.push(2);
+	steck_1.push(1);
+	steck_1.push(2);
+	steck_1.push(1);
+	steck_1.push(1);
+	steck_1.push(2);
+	steck_1.push(2);
+	steck_1.push(1);
+	steck_1.push(2);
+	steck_1.push(2);
+	steck_1.push(2);
+
+	while (!steck_1.empty())
+	{
+		steck_1.print();
+		switch (steck_1.peek()) {
+		case 1:
+			steck_2.push(steck_1.pop());
+			break;
+		case 2:
+			steck_3.push(steck_1.pop());
+		}
+	}
+
+	steck_2.print();
+	steck_3.print();
+
+	return 0;
+}
