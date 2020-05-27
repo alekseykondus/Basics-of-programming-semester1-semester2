@@ -1,84 +1,73 @@
 #include <iostream>
+#include <exception>
 
-using namespace std;
-
-struct steck 
+//template <typename T>
+struct MyStack
 {
-private:
-	int max_size = 10;
-	int top = -1;
-	int* arr = new int[max_size];
-	int* arr2 = nullptr;
-
-	void newArr() 
-	{
-		max_size *= 2;
-		arr2 = new int[max_size];
-		for (int i = 0; i < max_size / 2; i++)
-			arr2[i] = arr[i];
-
-		delete(arr);
-		*arr = *arr2;
-	}
-public:
-	void push(int element) 
-	{
-		if (top == max_size)
-			newArr();
-
-		arr[++top] = element;
-	}
-	int peek() 
-	{
-		return arr[top];
-	}
-	int pop() 
-	{
-		return arr[top--];
-	}
-	bool empty() 
-	{
-		return top == -1;
-	}
-	void print() 
-	{
-		for (int i = 0; i <= top; i++)
-			cout << arr[i] << '	';
-		cout << endl;
-	};
+	int Data;
+	MyStack* next = nullptr;
 };
 
-int main() 
+struct MyStack_List
 {
-	steck steck_1, steck_2, steck_3;
-
-	steck_1.push(1);
-	steck_1.push(2);
-	steck_1.push(1);
-	steck_1.push(2);
-	steck_1.push(1);
-	steck_1.push(1);
-	steck_1.push(2);
-	steck_1.push(2);
-	steck_1.push(1);
-	steck_1.push(2);
-	steck_1.push(2);
-	steck_1.push(2);
-
-	while (!steck_1.empty())
+	MyStack* top = nullptr;
+	void push(int D) // добавление элементов
 	{
-		steck_1.print();
-		switch (steck_1.peek()) {
-		case 1:
-			steck_2.push(steck_1.pop());
-			break;
-		case 2:
-			steck_3.push(steck_1.pop());
+		MyStack* q = new MyStack;
+		q->Data = D;
+		if (top == nullptr)
+			top = q;
+		else
+		{
+			q->next = top;
+			top = q;
 		}
 	}
+	int pop()//удаляет последний элемент стека
+	{
+		int dat = top->Data;
+		top = top->next;
+		return dat;
+	}
+	void peek()// вывод всех элементов на экран
+	{
+		MyStack* q = new MyStack;
+		q = top;
+		while (q != NULL)
+		{
+			std::cout << q->Data << std::endl;
+			q = q->next;
+		}
+	}
+	//int arr[10];
+	//int top = -1;
+	//void peek();
+};
 
-	steck_2.print();
-	steck_3.print();
+int main()
+{
+	MyStack_List* top = nullptr;
+	MyStack_List* top_2 = nullptr;
+	MyStack_List* top_3 = nullptr;
+	top->push(1);
+	top->push(4);
+	top->push(6);
+	top->push(2);
+	top->push(8);
+	top->push(12);
+	top->push(3);
+	top->push(9);
+	top->push(7);
+	top->push(0);
+	top->peek();
 
-	return 0;
+	for (int i = 0; i < 10; i++)
+	{
+		int pop_copy = top->pop();
+		if (pop_copy < 5) top_2->push(pop_copy);
+		else top_3->push(pop_copy);
+	}
+
+	top_2->peek();
+	top_3->peek();
 }
